@@ -41,7 +41,7 @@ const Login = () => {
     <div className='grid grid-rows-[40vh_60vh] md:grid-cols-[40%_60%]'>
         <div className='min-h-[40vh] md:min-h-screen bg-[#758694] flex justify-center items-center md:border-[#FFF] md:border-r-[0.3rem] shadow-2xl'>
             {/* Topic */}
-            <div className='flex flex-col justify-center items-center'>
+            <div className='flex flex-col justify-center items-center mt-3'>
                 <div className='md:flex md:gap-2'>                            
                     <p className='flex justify-center items-center text-[#F7E7DC] 
                         font-bold text-[1.4rem] md:text-[2.8rem]'>Login</p>
@@ -71,7 +71,7 @@ const Login = () => {
                         <button
                             type='submit'
                             className='w-40flex justify-center items-center-[10rem] bg-[#F7E7DC] text-[#405D72]
-                            font-bold text-[1.2rem] md:text-[2.2rem] py-3 rounded-xl mt-8'>
+                            font-bold text-[1.2rem] md:text-[2.2rem] py-3 rounded-xl mb-4'>
                             Login
                         </button>
                     </form>
@@ -86,7 +86,7 @@ const Login = () => {
 
         </div>
         <div className='min-h-[60vh] md:min-h-screen bg-[#FFF8F3]'>
-            <img className='h-[100vh] w-screen' src="\pictures\candy1.jpg" alt="" />
+            {/* <img className='h-[100vh] w-screen' src="\pictures\candy1.jpg" alt="" /> */}
         </div>
     </div>
   )

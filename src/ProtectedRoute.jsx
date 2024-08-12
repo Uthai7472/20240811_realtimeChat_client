@@ -19,6 +19,7 @@ const ProtectedRoute = ({ element }) => {
             try {
                 const response = await axios.post('http://localhost:5000/api/auth/verify', {token});
                 console.log('Valid:', response.data.valid);
+                console.log('User:', response.data.user);
                 setIsAuthenticated(response.data.valid);
             } catch (error) {
                 setIsAuthenticated(false);
