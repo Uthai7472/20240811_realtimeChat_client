@@ -73,7 +73,7 @@ const AddFriend = ({ user }) => {
                     <p>{friendData.username}</p>
                     {friendData.isAlreadyFriend ? (
                         <div>
-                                <Link to={`/chat/${friendData.id}`}>Chat</Link>
+                                <Link to={`/chat/${friendData.id}/${friendData.username}`}>Chat</Link>
                         </div>
                     ) : (
                         <div>

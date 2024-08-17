@@ -9,18 +9,8 @@ const Chat = ({ user }) => {
     const [message, setMessage] = useState('');
     const [file, setFile] = useState(null);
     const [messages, setMessages] = useState([]);
-
-    // useEffect(() => {
-    //     socket.on('receiveMessage', (data) => {
-    //         if (data.senderId === friendId || data.receiverId === friendId) {
-    //             setMessages((prevMessages) => [...prevMessages, data]);
-    //         }
-    //     });
-
-    //     return () => {
-    //         socket.off('receiveMessage'); // Clean up the event listener on unmount
-    //     };
-    // }, [friendId]);
+    const [userProfilePic, setUserProfilePic] = useState('');
+    const [friendProfilePic, setFriendProfilePic] = useState('');
 
     const handleFileChange = (e) => {
         setFile(e.target.files[0]);
@@ -85,12 +75,46 @@ const Chat = ({ user }) => {
             }
         };
 
+        const fetchUserProfile = async () => {
+            try {
+                const response = await axios.get(`https://ou-realtime-chat-server.vercel.app/api/auth/users/${user.id}`, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+
+                setUserProfilePic(response.data.result.profile_pic);
+                console.log('Profile picture:', response.data.result.profile_pic);
+            } catch (error) {
+                console.log('Error fetching friend profile:', error);
+            }
+        };
+
+        const fetchFriendProfile = async () => {
+            try {
+                const response = await axios.get(`https://ou-realtime-chat-server.vercel.app/api/auth/users/${friendId}`, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+
+                setFriendProfilePic(response.data.result.profile_pic);
+            } catch (error) {
+                console.log('Error fetching friend profile:', error);
+            }
+        };
+
+        
+        fetchUserProfile();
+        fetchFriendProfile();
+
         const interval = setInterval(fetchMessages, 5000); // Poll every 5 seconds
 
         return () => clearInterval(interval); // Cleanup interval on unmount
     }, [friendId, token]);
 
     console.log('Token:', token);
+    
 
   return (
     <div className='flex flex-col min-h-screen'>
@@ -103,9 +127,12 @@ const Chat = ({ user }) => {
                         className={`flex ${msg.sender_id === user.id ? 'items-end' : 'items-start'} flex-col`}
                     >
                         <p className='font-bold'>{new Date(msg.created_at).toLocaleString()}</p>
-                        <p className=''>
-                            {msg.sender_id === user.id ? '' : `${friendUsername} :`} {msg.message}
-                        </p>
+                        <div className='flex'>
+                            <img className='w-[2.5rem] h-[2.5rem] rounded-[50%] mb-2' src={msg.sender_id === user.id ? userProfilePic : friendProfilePic}  />
+                            <p className=''>
+                                {msg.sender_id === user.id ? '' : `${friendUsername} :`} {msg.message}
+                            </p>
+                        </div>
                         {msg.imageUrl && (
                             <p>
                                 <img className='w-[10vw] h-[15vh] object-cover' src={msg.imageUrl} alt="Chat image" />
