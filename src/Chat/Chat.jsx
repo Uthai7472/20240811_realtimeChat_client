@@ -127,15 +127,27 @@ const Chat = ({ user }) => {
                         className={`flex ${msg.sender_id === user.id ? 'items-end' : 'items-start'} flex-col`}
                     >
                         <p className='font-bold'>{new Date(msg.created_at).toLocaleString()}</p>
-                        <div className='flex'>
-                            <img className='w-[2.5rem] h-[2.5rem] rounded-[50%] mb-2' src={msg.sender_id === user.id ? userProfilePic : friendProfilePic}  />
-                            <p className=''>
-                                {msg.sender_id === user.id ? '' : `${friendUsername} :`} {msg.message}
-                            </p>
+                        <div className='flex items-center'>
+                            {msg.sender_id === user.id ? (
+                                <div className='flex'>
+                                    <p className=''>
+                                        {msg.sender_id === user.id ? '' : `${friendUsername} :`} {msg.message}
+                                    </p>
+                                    <img className='w-[2.5rem] h-[2.5rem] rounded-[50%]' src={msg.sender_id === user.id ? userProfilePic : friendProfilePic}  />
+                                </div>
+                            ) : (
+                                <div className='flex items-center'>
+                                    <img className='w-[2.5rem] h-[2.5rem] rounded-[50%]' src={msg.sender_id === user.id ? userProfilePic : friendProfilePic}  />
+                                    <p className=''>
+                                        {msg.sender_id === user.id ? '' : `${friendUsername} :`} {msg.message}
+                                    </p>
+                                </div>
+                            )}
+                            
                         </div>
                         {msg.imageUrl && (
                             <p>
-                                <img className='w-[10vw] h-[15vh] object-cover' src={msg.imageUrl} alt="Chat image" />
+                                <img className='w-[10vw] h-[15vh] object-cover mt-2' src={msg.imageUrl} alt="Chat image" />
                             </p>
                         )}
                         
