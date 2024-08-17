@@ -12,12 +12,20 @@ const Chat = ({ user }) => {
     const [userProfilePic, setUserProfilePic] = useState('');
     const [friendProfilePic, setFriendProfilePic] = useState('');
 
+    const [isFullPicture, setIsFullPicture] = useState(false);
+    const [fullPictureUrl, setFullPictureUrl] = useState('');
+
     const handleFileChange = (e) => {
         setFile(e.target.files[0]);
     }
 
     const handleMessageChange = (e) => {
         setMessage(e.target.value);
+    }
+
+    const handleClickFullPicture = (imageUrl) => {
+        setIsFullPicture(!isFullPicture);
+        setFullPictureUrl(imageUrl);
     }
 
     const handleSubmit = async (e) => {
@@ -129,33 +137,53 @@ const Chat = ({ user }) => {
                         <p className='font-bold'>{new Date(msg.created_at).toLocaleString()}</p>
                         <div className='flex items-center'>
                             {msg.sender_id === user.id ? (
-                                <div className='flex'>
-                                    <p className=''>
-                                        {msg.sender_id === user.id ? '' : `${friendUsername} :`} {msg.message}
-                                    </p>
+                                <div className='flex flex-col items-end'>
                                     <img className='w-[2.5rem] h-[2.5rem] rounded-[50%]' src={msg.sender_id === user.id ? userProfilePic : friendProfilePic}  />
+                                    {/* <p className=''>
+                                        {msg.sender_id === user.id ? '' : `${friendUsername} :`} 
+                                    </p> */}
+                                    <p>
+                                        {msg.message}
+                                    </p>
+                                    
                                 </div>
                             ) : (
-                                <div className='flex items-center'>
-                                    <img className='w-[2.5rem] h-[2.5rem] rounded-[50%]' src={msg.sender_id === user.id ? userProfilePic : friendProfilePic}  />
-                                    <p className=''>
-                                        {msg.sender_id === user.id ? '' : `${friendUsername} :`} {msg.message}
+                                <div className=''>
+                                    <div className='flex justify-start items-center'>
+                                        <img className='w-[2.5rem] h-[2.5rem] rounded-[50%]' src={msg.sender_id === user.id ? userProfilePic : friendProfilePic}  />
+                                        <p className=''>
+                                            {msg.sender_id === user.id ? '' : `${friendUsername} :`}
+                                        </p>
+                                    </div>
+                                    <p>
+                                        {msg.message}
                                     </p>
                                 </div>
                             )}
                             
                         </div>
                         {msg.imageUrl && (
-                            <p>
-                                <img className='w-[10vw] h-[15vh] object-cover mt-2' src={msg.imageUrl} alt="Chat image" />
+                            <p onClick={() => handleClickFullPicture(msg.imageUrl)}>
+                                <img className='w-[30%] h-[30%] object-cover mt-2' src={msg.imageUrl} alt="Chat image" />
                             </p>
                         )}
                         
-                        <hr />
                     </div>
                 ))}
             </div>
         </div>
+
+        {isFullPicture && (
+            <div className='fixed inset-0 bg-gray-800 bg-opacity-75 flex justify-center items-center z-50' onClick={handleClickFullPicture}>
+                <div className='relative flex justify-center' >
+                    <img src={fullPictureUrl}
+                        className='w-[60%] h-[60%]'
+                    />
+                </div>
+            </div>
+        )}
+
+        
 
         <div className=''>
             <div className='fixed flex justify-center items-center bottom-0 bg-blue-300 w-full h-auto backdrop-blur-sm'>
