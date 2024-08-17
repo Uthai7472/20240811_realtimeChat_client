@@ -18,7 +18,7 @@ const ProtectedRoute = ({ element }) => {
             }
 
             try {
-                const response = await axios.post('http://localhost:5000/api/auth/verify', {token});
+                const response = await axios.post('https://ou-realtime-chat-server.vercel.app/api/auth/verify', {token});
                 console.log('Valid:', response.data.valid);
                 console.log('User:', response.data.user);
                 setIsAuthenticated(response.data.valid);

@@ -14,7 +14,7 @@ const Login = () => {
         console.log(username, password);
 
         try {
-            const response = await axios.post('http://localhost:5000/api/auth/login', {
+            const response = await axios.post('https://ou-realtime-chat-server.vercel.app/api/auth/login', {
                 username: username,
                 password: password
             });

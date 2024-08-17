@@ -43,7 +43,7 @@ const Chat = ({ user }) => {
 
         try {
             // Send message to database api
-            const response = await axios.post('http://localhost:5000/api/protected/chat/message', formData, {
+            const response = await axios.post('https://ou-realtime-chat-server.vercel.app/api/protected/chat/message', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                     'Authorization': `Bearer ${token}`
@@ -56,7 +56,7 @@ const Chat = ({ user }) => {
             setFile(null);
 
             // Fetch new messages after sending
-            const getChat = await axios.get('http://localhost:5000/api/protected/chat/message', {
+            const getChat = await axios.get('https://ou-realtime-chat-server.vercel.app/api/protected/chat/message', {
                 params: { receiver_id: friendId },
                 headers: {
                     'Authorization': `Bearer ${token}`
@@ -72,7 +72,7 @@ const Chat = ({ user }) => {
     useEffect(() => {
         const fetchMessages = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/api/protected/chat/message', {
+                const response = await axios.get('https://ou-realtime-chat-server.vercel.app/api/protected/chat/message', {
                     params: { receiver_id: friendId },
                     headers: {
                         'Authorization': `Bearer ${token}`

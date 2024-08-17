@@ -14,7 +14,7 @@ const Home = ({ user }) => {
     useEffect(() => {
       const fetchUserData = async () => {
         try {
-          const response = await axios.get(`http://localhost:5000/api/auth/users/${user.id}`, {
+          const response = await axios.get(`https://ou-realtime-chat-server.vercel.app/api/auth/users/${user.id}`, {
             headers: {
               'Authorization': `Bearer ${token}`
             }
@@ -29,7 +29,7 @@ const Home = ({ user }) => {
 
       const fetchFriends = async () => {
         try {
-          const response = await axios.get('http://localhost:5000/api/protected/friend/show_friends', {
+          const response = await axios.get('https://ou-realtime-chat-server.vercel.app/api/protected/friend/show_friends', {
             headers: {
               'Authorization': `Bearer ${token}`
             }

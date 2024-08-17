@@ -14,7 +14,7 @@ const AddFriend = ({ user }) => {
 
         console.log(lineId);
         try {
-            const response = await axios.post('http://localhost:5000/api/protected/friend/search_friend', {line_id: lineId}, {
+            const response = await axios.post('https://ou-realtime-chat-server.vercel.app/api/protected/friend/search_friend', {line_id: lineId}, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -30,7 +30,7 @@ const AddFriend = ({ user }) => {
 
     const handleAddFriend = async () => {
         try {
-            await axios.post('http://localhost:5000/api/protected/friend/add_friend', {user_id: user.id, friend_id: friendData.id}, {
+            await axios.post('https://ou-realtime-chat-server.vercel.app/api/protected/friend/add_friend', {user_id: user.id, friend_id: friendData.id}, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
