@@ -5,6 +5,7 @@ import axios from 'axios';
 const ProtectedRoute = ({ element }) => {
 
     const [isAuthenticated, setIsAuthenticated] = useState(null);
+    const [user, setUser] = useState(null);
 
     useEffect(() => {
         const verifyToken = async () => {
@@ -21,6 +22,7 @@ const ProtectedRoute = ({ element }) => {
                 console.log('Valid:', response.data.valid);
                 console.log('User:', response.data.user);
                 setIsAuthenticated(response.data.valid);
+                setUser(response.data.user);
             } catch (error) {
                 setIsAuthenticated(false);
                 console.log('Token verification failed:', error.response?.data?.message || error.message);
@@ -37,7 +39,7 @@ const ProtectedRoute = ({ element }) => {
 
     if (isAuthenticated) {
         console.log('Home');
-        return element;
+        return React.cloneElement(element, { user });
     } else {
         return <Navigate to="/" replace />
     }
