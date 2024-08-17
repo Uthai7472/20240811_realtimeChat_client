@@ -38,7 +38,7 @@ const UpdateUser = ({ user }) => {
 
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.put('http://localhost:5000/api/auth/update_user', formData, {
+            const response = await axios.put('https://ou-realtime-chat-server.vercel.app/api/auth/update_user', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                     'Authorization': `Bearer ${token}`
