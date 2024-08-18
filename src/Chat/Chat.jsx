@@ -135,7 +135,7 @@ const Chat = ({ user }) => {
                         className={`flex ${msg.sender_id === user.id ? 'items-end' : 'items-start'} flex-col`}
                     >
                         <p className='font-bold'>{new Date(msg.created_at).toLocaleString()}</p>
-                        <div className='flex justify-end items-center'>
+                        <div className='flex items-center'>
                             {msg.sender_id === user.id ? (
                                 <div className='flex justify-end items-center w-[60%]'>
                                     <p>
