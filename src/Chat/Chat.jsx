@@ -132,7 +132,7 @@ const Chat = ({ user }) => {
             <div className='pb-[5rem]'>
                 {messages.map((msg, index) => (
                     <div key={index}
-                        className={`flex ${msg.sender_id === user.id ? 'items-end' : 'items-start'} flex-col gap-2`}
+                        className={`flex flex-col ${msg.sender_id === user.id ? 'items-end' : 'items-start'} mb-2`}
                     >
                             {msg.sender_id === user.id ? (
                                 <div className='flex flex-col justify-center items-end w-[60%] rounded-xl bg-[#F0EDCF] p-2'>
