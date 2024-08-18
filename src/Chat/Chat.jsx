@@ -135,7 +135,6 @@ const Chat = ({ user }) => {
                         className={`flex ${msg.sender_id === user.id ? 'items-end' : 'items-start'} flex-col`}
                     >
                         <p className='font-bold'>{new Date(msg.created_at).toLocaleString()}</p>
-                        <div className='flex items-center'>
                             {msg.sender_id === user.id ? (
                                 <div className='flex justify-end items-center w-[60%]'>
                                     <p>
@@ -154,9 +153,9 @@ const Chat = ({ user }) => {
                                             {msg.sender_id === user.id ? '' : `${friendUsername}`}
                                     </p>
                                     <div className='flex justify-start items-center'>
-                                        <span className='w-[2.5rem] h-[2.5rem]'>
+                                        <div className='w-[2.5rem] h-[2.5rem]'>
                                             <img className='w-[2.5rem] h-[2.5rem] rounded-[50%]' src={msg.sender_id === user.id ? userProfilePic : friendProfilePic}  />
-                                        </span>
+                                        </div>
                                         <span>
                                             {msg.message}
                                         </span>
@@ -167,11 +166,7 @@ const Chat = ({ user }) => {
                                         </p>
                                     )}
                                 </div>
-                            )}
-                            
-                        </div>
-                        
-                        
+                            )}                    
                     </div>
                 ))}
             </div>
