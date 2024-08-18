@@ -132,10 +132,10 @@ const Chat = ({ user }) => {
             <div className='pb-[5rem]'>
                 {messages.map((msg, index) => (
                     <div key={index}
-                        className={`flex ${msg.sender_id === user.id ? 'items-end' : 'items-start'} flex-col`}
+                        className={`flex ${msg.sender_id === user.id ? 'items-end' : 'items-start'} flex-col gap-2`}
                     >
                             {msg.sender_id === user.id ? (
-                                <div className='flex flex-col justify-center items-end w-[60%] rounded-xl border-[0.5px] border-black p-2'>
+                                <div className='flex flex-col justify-center items-end w-[60%] rounded-xl bg-[#F0EDCF] p-2'>
                                     <p className='font-bold'>{new Date(msg.created_at).toLocaleString()}</p>
                                     <p>
                                         {msg.message}
@@ -148,7 +148,7 @@ const Chat = ({ user }) => {
                                     
                                 </div>
                             ) : (
-                                <div className='flex flex-col items-start justify-center w-[60%] rounded-xl border-[0.5px] border-black p-2'>
+                                <div className='flex flex-col items-start justify-center w-[60%] rounded-xl bg-[#40A2D8] p-2'>
                                     <p className='font-bold'>{new Date(msg.created_at).toLocaleString()}</p>
                                     <p className='font-bold'>
                                             {msg.sender_id === user.id ? '' : `${friendUsername}`}
