@@ -136,7 +136,7 @@ const Chat = ({ user }) => {
                     >
                         <p className='font-bold'>{new Date(msg.created_at).toLocaleString()}</p>
                             {msg.sender_id === user.id ? (
-                                <div className='flex justify-end items-center w-[60%]'>
+                                <div className='flex justify-end items-center w-[60%] border-2 border-black'>
                                     <p>
                                         {msg.message}
                                     </p>
@@ -148,17 +148,17 @@ const Chat = ({ user }) => {
                                     
                                 </div>
                             ) : (
-                                <div className='flex flex-col items-start w-[60%] border-1 border-black'>
+                                <div className='flex flex-col items-start w-[60%] border-2 border-black'>
                                     <p className='font-bold'>
                                             {msg.sender_id === user.id ? '' : `${friendUsername}`}
                                     </p>
-                                    <div className='flex justify-start items-center'>
+                                    <div className='flex justify-start items-center gap-2'>
                                         <div className='w-[2.5rem] h-[2.5rem]'>
                                             <img className='w-[2.5rem] h-[2.5rem] rounded-[50%]' src={msg.sender_id === user.id ? userProfilePic : friendProfilePic}  />
                                         </div>
-                                        <span>
+                                        <div>
                                             {msg.message}
-                                        </span>
+                                        </div>
                                     </div>
                                     {msg.imageUrl && (
                                         <p className='' onClick={() => handleClickFullPicture(msg.imageUrl)}>
