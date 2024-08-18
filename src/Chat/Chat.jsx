@@ -137,8 +137,8 @@ const Chat = ({ user }) => {
                         <p className='font-bold'>{new Date(msg.created_at).toLocaleString()}</p>
                         <div className='flex items-center'>
                             {msg.sender_id === user.id ? (
-                                <div className='flex flex-col items-end'>
-                                    <img className='w-[2.5rem] h-[2.5rem] rounded-[50%]' src={msg.sender_id === user.id ? userProfilePic : friendProfilePic}  />
+                                <div className='flex flex-col items-end w-[60%] border-1 border-black'>
+{/*                                     <img className='w-[2.5rem] h-[2.5rem] rounded-[50%]' src={msg.sender_id === user.id ? userProfilePic : friendProfilePic}  /> */}
                                     {/* <p className=''>
                                         {msg.sender_id === user.id ? '' : `${friendUsername} :`} 
                                     </p> */}
@@ -153,16 +153,14 @@ const Chat = ({ user }) => {
                                     
                                 </div>
                             ) : (
-                                <div className='flex flex-col items-start'>
+                                <div className='flex flex-col items-start w-[60%] border-1 border-black'>
+                                    <p className='font-bold'>
+                                            {msg.sender_id === user.id ? '' : `${friendUsername}`}
+                                    </p>
                                     <div className='flex justify-start items-center'>
                                         <img className='w-[2.5rem] h-[2.5rem] rounded-[50%]' src={msg.sender_id === user.id ? userProfilePic : friendProfilePic}  />
-                                        <p className=''>
-                                            {msg.sender_id === user.id ? '' : `${friendUsername} :`}
-                                        </p>
-                                    </div>
-                                    <p>
                                         {msg.message}
-                                    </p>
+                                    </div>
                                     {msg.imageUrl && (
                                         <p className='' onClick={() => handleClickFullPicture(msg.imageUrl)}>
                                             <img className='w-[30%] h-[30%] mt-2' src={msg.imageUrl} alt="Chat image" />
