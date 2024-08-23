@@ -154,8 +154,8 @@ const Chat = ({ user }) => {
                                             {msg.sender_id === user.id ? '' : `${friendUsername}`}
                                     </p>
                                     <div className='flex justify-start items-center gap-2'>
-                                        <div className='w-[2.5rem] h-[2.5rem]'>
-                                            <img className='w-[2.5rem] h-[2.5rem] rounded-[50%]' src={msg.sender_id === user.id ? userProfilePic : friendProfilePic}  />
+                                        <div className='w-[2.5rem] h-[2.5rem] flex-shrink-0'>
+                                            <img className='w-full h-full rounded-[50%]' src={msg.sender_id === user.id ? userProfilePic : friendProfilePic}  />
                                         </div>
                                         <div>
                                             {msg.message}
