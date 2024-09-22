@@ -16,6 +16,7 @@ const Chat = ({ user }) => {
     const [fullPictureUrl, setFullPictureUrl] = useState('');
 
     const messagesEndRef = useRef(null);
+    const [initialScrollDone, setInitialScrollDone] = useState(false);
 
     const handleFileChange = (e) => {
         setFile(e.target.files[0]);
@@ -124,10 +125,11 @@ const Chat = ({ user }) => {
     }, [friendId, token]);
 
     useEffect(() => {
-        if(messagesEndRef.current) {
+        if(!initialScrollDone && messagesEndRef.current) {
             messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
+            setInitialScrollDone(true);
         }
-    }, [messages]);
+    }, [messages, initialScrollDone]);
 
     console.log('Token:', token);
     
