@@ -178,6 +178,7 @@ const Chat = ({ user }) => {
                             )}                    
                     </div>
                 ))}
+                <div ref={messagesEndRef} />
             </div>
         </div>
 
