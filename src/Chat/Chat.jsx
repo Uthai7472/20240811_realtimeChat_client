@@ -88,6 +88,9 @@ const Chat = ({ user }) => {
                 });
 
                 setMessages(response.data.messages);
+                if (response.data.message > 0) {
+                    scrollToBottom();
+                }
             } catch (error) {
                 console.log('Error fetching messages:', error);
             }
