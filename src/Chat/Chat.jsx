@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
@@ -14,6 +14,8 @@ const Chat = ({ user }) => {
 
     const [isFullPicture, setIsFullPicture] = useState(false);
     const [fullPictureUrl, setFullPictureUrl] = useState('');
+
+    const messagesEndRef = useRef(null);
 
     const handleFileChange = (e) => {
         setFile(e.target.files[0]);
@@ -116,10 +118,16 @@ const Chat = ({ user }) => {
         fetchUserProfile();
         fetchFriendProfile();
 
-        const interval = setInterval(fetchMessages, 5000); // Poll every 5 seconds
+        const interval = setInterval(fetchMessages, 1000); // Poll every 5 seconds
 
         return () => clearInterval(interval); // Cleanup interval on unmount
     }, [friendId, token]);
+
+    useEffect(() => {
+        if(messagesEndRef.current) {
+            messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
+        }
+    }, [messages]);
 
     console.log('Token:', token);
     
