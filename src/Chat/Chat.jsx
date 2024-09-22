@@ -18,6 +18,12 @@ const Chat = ({ user }) => {
     const messagesEndRef = useRef(null);
     const [initialScrollDone, setInitialScrollDone] = useState(false);
 
+    const scrollToBottom = () => {
+        if (messagesEndRef.current) {
+            messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
+    
     const handleFileChange = (e) => {
         setFile(e.target.files[0]);
     }
@@ -64,6 +70,7 @@ const Chat = ({ user }) => {
                 }
             });
             setMessages(getChat.data.messages);
+            scrollToBottom();
 
         } catch (error) {
             console.log('Error uploading message and image:', error);
@@ -125,12 +132,6 @@ const Chat = ({ user }) => {
     }, [friendId, token]);
 
     useEffect(() => {
-        const scrollToBottom = () => {
-            if (messagesEndRef.current) {
-                messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
-            }
-        };
-
         // Scroll to bottom only once after messages are fetched
         if (!initialScrollDone && messages.length > 0) {
             scrollToBottom();
