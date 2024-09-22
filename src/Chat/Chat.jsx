@@ -125,11 +125,11 @@ const Chat = ({ user }) => {
     }, [friendId, token]);
 
     useEffect(() => {
-        if(messagesEndRef.current) {
-            //console.log("First time:", initialScrollDone);
+        // Scroll to bottom only once after messages are fetched
+        if (!initialScrollDone && messages.length > 0 && messagesEndRef.current) {
             messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
-            //setInitialScrollDone(true);
-            //console.log("After:", initialScrollDone);
+            setInitialScrollDone(true); // Set the flag to true after scrolling
+            console.log(initialScrollDone);
         }
     }, [messages]);
 
