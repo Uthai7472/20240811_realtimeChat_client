@@ -126,10 +126,10 @@ const Chat = ({ user }) => {
 
     useEffect(() => {
         if(!initialScrollDone && messagesEndRef.current) {
-            console.log("First time:", initialScrollDonw);
+            console.log("First time:", initialScrollDone);
             messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
             setInitialScrollDone(true);
-            console.log("After:", initialScrollDonw);
+            console.log("After:", initialScrollDone);
         }
     }, [messages, initialScrollDone]);
 
