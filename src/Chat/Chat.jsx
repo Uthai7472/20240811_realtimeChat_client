@@ -87,13 +87,7 @@ const Chat = ({ user }) => {
                     }
                 });
 
-                // Check if there are new messages
-                if (response.data.messages.length > messages.length) {
-                    setMessages(response.data.messages);
-                    scrollToBottom(); // Scroll down if new messages are found
-                } else {
-                    setMessages(response.data.messages);
-                }
+                setMessages(response.data.messages);
                 
             } catch (error) {
                 console.log('Error fetching messages:', error);
