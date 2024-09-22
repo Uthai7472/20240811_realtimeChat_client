@@ -132,7 +132,7 @@ const Chat = ({ user }) => {
         };
 
         // Scroll to bottom only once after messages are fetched
-        if (!initialScrollDone && messages.length > 0) {
+        if (!initialScrollDone || messages.length > 0) {
             scrollToBottom();
             setInitialScrollDone(true); // Set the flag to true after scrolling
         } else {
