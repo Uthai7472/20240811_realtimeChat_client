@@ -144,18 +144,6 @@ const Chat = ({ user }) => {
         }
     }, [messages]);
 
-    useEffect(() => {
-        // Scroll to bottom when a new message is sent
-        if (messages.length > 0 && initialScrollDone) {
-            const scrollToBottom = () => {
-                if (messagesEndRef.current) {
-                    messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
-                }
-            };
-            scrollToBottom();
-        }
-    }, [messages]);
-
     console.log('Token:', token);
     
 
