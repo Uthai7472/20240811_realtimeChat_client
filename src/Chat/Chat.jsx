@@ -125,13 +125,13 @@ const Chat = ({ user }) => {
     }, [friendId, token]);
 
     useEffect(() => {
-        if(!initialScrollDone && messagesEndRef.current) {
-            console.log("First time:", initialScrollDone);
+        if(messagesEndRef.current) {
+            //console.log("First time:", initialScrollDone);
             messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
-            setInitialScrollDone(true);
-            console.log("After:", initialScrollDone);
+            //setInitialScrollDone(true);
+            //console.log("After:", initialScrollDone);
         }
-    }, [messages, initialScrollDone]);
+    }, [messages]);
 
     console.log('Token:', token);
     
